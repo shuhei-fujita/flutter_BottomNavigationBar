@@ -41,6 +41,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
   int _selectedIndex = 0;
+  static const String BASE_URL = "https://suzuri.jp/api/v1";
+  static const String API_KEY = "lbIjQAYihovRRXu68Xeb0uB-e28Vt9jUSaFPFXIQbr8";
+  static const String authority = "suzuri.jp";
 
   static List<Widget> _widgetOptions = <Widget>[
     PageProductList(),
@@ -56,13 +59,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<String> getData() async {
     var response = await http.get(
-        Uri.encodeFull(
-          "https://samples.openweathermap.org/data/2.5/weather?id=524901&appid=870204681a9e190d574a080346a80562"
+        Uri.https(
+          authority,
+          "/api/v1/products/1",
+
+          // weather api
+          // "https://samples.openweathermap.org/data/2.5/weather?id=524901&appid=870204681a9e190d574a080346a80562"
         ),
-//        headers: {
-//          "Accept": "application/json",
-//          HttpHeaders.authorizationHeader: "FWI1TQPfH_lxb7VdzE1NVLBRDEojLPfxexrKV8begw8",
-//        }
+        headers: {
+          HttpHeaders.authorizationHeader: API_KEY
+        },
     );
 
     if (response.statusCode == 200) {
@@ -72,6 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
       String data = response.body;
       print(data);
     } else {
+      print(response.statusCode);
       print("リクエスト失敗");
     }
   }
@@ -85,7 +92,9 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(child: _widgetOptions.elementAt(_selectedIndex),),
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
