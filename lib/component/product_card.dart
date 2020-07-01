@@ -10,9 +10,9 @@ class ProductCard extends StatelessWidget {
 
       onTap: () async {
         print("tapped");
-//        Navigator.of(context).pushNamed(
-//          ProductDetail.routeName,
-//        );
+        Navigator.of(context).pushNamed(
+          ProductDetail.routeName,
+        );
       },
 
       child: Container(
