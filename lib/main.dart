@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterbottomnavigationbar/page/page_product_list.dart';
 import 'package:flutterbottomnavigationbar/page/page_profile.dart';
+import 'package:flutterbottomnavigationbar/page/page_search.dart';
 import 'package:flutterbottomnavigationbar/page/page_store.dart';
 import 'package:flutterbottomnavigationbar/page/product_detail.dart';
 
@@ -62,17 +63,30 @@ class _MyHomePageState extends State<MyHomePage> {
             title: Text('Home'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            title: Text('Business'),
+            icon: Icon(Icons.local_grocery_store),
+            title: Text('カート'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            title: Text('School'),
+            icon: Icon(Icons.person),
+            title: Text('アカウント'),
           ),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => PageSearch()),
+          );
+        },
+        child: Icon(
+          Icons.search,
+          color: Colors.black,
+        ),
+        backgroundColor: Colors.white,
       ),
     );
   }
