@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterbottomnavigationbar/component/product_card.dart';
+import 'package:http/http.dart' as http;
 
 class PageProductList extends StatelessWidget {
   // 画面を遷移するために必要なウィジェットの名前を定義する
