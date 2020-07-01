@@ -15,3 +15,9 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 # flutter_BottomNavigationBar
+
+
+# 参照
+https://api.flutter.dev/flutter/material/BottomNavigationBar-class.html
+
+https://tech.pepabo.com/2020/05/27/flutter-hands-on/
