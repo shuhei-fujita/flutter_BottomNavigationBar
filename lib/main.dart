@@ -59,16 +59,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<String> getData() async {
     var response = await http.get(
-//        Uri.https(
-//          authority,
-//          "/api/v1/products/1",
-//        ),
+
+        BASE_URL + "/api/v1/items",
+
+        headers: {
+          'Authorization' : 'Bearer ' + API_KEY,
+        },
+
       // weather api
 //       'https://samples.openweathermap.org/data/2.5/weather?id=524901&appid=870204681a9e190d574a080346a80562',
-        BASE_URL + "/oauth/authorize" + "?scope=read&redirect_uri=" + BASE_URL + "/api/v1/products/callback&response_type=code&client_id=" + API_KEY,
-        headers: {
-          HttpHeaders.authorizationHeader: API_KEY
-        },
+
     );
 
     if (response.statusCode == 200) {
@@ -81,6 +81,8 @@ class _MyHomePageState extends State<MyHomePage> {
       print(response.statusCode);
       print("リクエスト失敗");
     }
+
+    return response.body;
   }
 
   @override
@@ -93,7 +95,8 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: Text(getData()),
+//        _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
