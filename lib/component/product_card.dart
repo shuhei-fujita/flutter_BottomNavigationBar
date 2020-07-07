@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterbottomnavigationbar/page/product_detail.dart';
+import 'package:flutterbottomnavigationbar/page/page_detail.dart';
 
 class ProductCard extends StatelessWidget {
 

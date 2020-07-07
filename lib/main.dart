@@ -7,7 +7,7 @@ import 'package:flutterbottomnavigationbar/page/page_product_list.dart';
 import 'package:flutterbottomnavigationbar/page/page_profile.dart';
 import 'package:flutterbottomnavigationbar/page/page_search.dart';
 import 'package:flutterbottomnavigationbar/page/page_store.dart';
-import 'package:flutterbottomnavigationbar/page/product_detail.dart';
+import 'package:flutterbottomnavigationbar/page/page_detail.dart';
 import 'package:http/http.dart' as http;
 
 void main() => runApp(MyApp());
@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   static List<Widget> _widgetOptions = <Widget>[
     PageProductList(),
-    PageStore(),
+//    PageStore(),
     PageProfile(),
   ];
 
@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<String> getData() async {
     var response = await http.get(
 
-        BASE_URL + "/api/v1/items",
+        BASE_URL + "/api/v1/products",
 
         headers: {
           'Authorization' : 'Bearer ' + API_KEY,
@@ -81,8 +81,6 @@ class _MyHomePageState extends State<MyHomePage> {
       print(response.statusCode);
       print("リクエスト失敗");
     }
-
-    return response.body;
   }
 
   @override
@@ -95,8 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Text(getData()),
-//        _widgetOptions.elementAt(_selectedIndex),
+        child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -104,10 +101,10 @@ class _MyHomePageState extends State<MyHomePage> {
             icon: Icon(Icons.home),
             title: Text('Home'),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.local_grocery_store),
-            title: Text('カート'),
-          ),
+//          BottomNavigationBarItem(
+//            icon: Icon(Icons.local_grocery_store),
+//            title: Text('カート'),
+//          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             title: Text('アカウント'),
